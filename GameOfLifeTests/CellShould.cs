@@ -1,5 +1,6 @@
 using FluentAssertions;
 using GameOfLife;
+using Optional;
 using Xunit;
 
 namespace GameOfLifeTests
@@ -18,9 +19,9 @@ namespace GameOfLifeTests
         [Fact]
         public void die_with_fewer_than_two_live_neighbours_by_under_population()
         {
-            _neighbours.Add(new LiveCell())
-                .Add(new DeadCell())
-                .Add(new DeadCell());
+            _neighbours.Add(new LiveCell().Some<Cell>())
+                .Add(new DeadCell().Some<Cell>())
+                .Add(new DeadCell().Some<Cell>());
 
             var newCell = _cell.Tick(_neighbours);
 
@@ -30,10 +31,10 @@ namespace GameOfLifeTests
         [Fact]
         public void die_with_more_than_three_live_neighbours_by_over_population()
         {
-            _neighbours.Add(new LiveCell())
-                .Add(new LiveCell())
-                .Add(new LiveCell())
-                .Add(new LiveCell());
+            _neighbours.Add(new LiveCell().Some<Cell>())
+                .Add(new LiveCell().Some<Cell>())
+                .Add(new LiveCell().Some<Cell>())
+                .Add(new LiveCell().Some<Cell>());
 
             var newCell = _cell.Tick(_neighbours);
 
@@ -43,9 +44,9 @@ namespace GameOfLifeTests
         [Fact]
         public void stay_alive_with_two_or_three_live_neighbours()
         {
-            _neighbours.Add(new LiveCell())
-                .Add(new LiveCell())
-                .Add(new LiveCell());
+            _neighbours.Add(new LiveCell().Some<Cell>())
+                .Add(new LiveCell().Some<Cell>())
+                .Add(new LiveCell().Some<Cell>());
 
             var newCell = _cell.Tick(_neighbours);
 
@@ -56,9 +57,9 @@ namespace GameOfLifeTests
         public void revive_a_dead_cell_with_exactly_three_live_neighbours()
         {
             var cell = new DeadCell();
-            _neighbours.Add(new LiveCell())
-                .Add(new LiveCell())
-                .Add(new LiveCell());
+            _neighbours.Add(new LiveCell().Some<Cell>())
+                .Add(new LiveCell().Some<Cell>())
+                .Add(new LiveCell().Some<Cell>());
 
             var newCell = cell.Tick(_neighbours);
 

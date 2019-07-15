@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Optional;
 
 namespace GameOfLife
 {
@@ -27,14 +28,14 @@ namespace GameOfLife
         private Neighbours NeighboursTo(Position position)
         {
             return new Neighbours()
-                .Add(_spots.ContainsKey(position.Above()) ? _spots[position.Above()] : null)
-                .Add(_spots.ContainsKey(position.Bellow()) ? _spots[position.Bellow()] : null)
-                .Add(_spots.ContainsKey(position.Left()) ? _spots[position.Left()] : null)
-                .Add(_spots.ContainsKey(position.Right()) ? _spots[position.Right()] : null)
-                .Add(_spots.ContainsKey(position.AboveLeft()) ? _spots[position.AboveLeft()] : null)
-                .Add(_spots.ContainsKey(position.AboveRight()) ? _spots[position.AboveRight()] : null)
-                .Add(_spots.ContainsKey(position.BellowLeft()) ? _spots[position.BellowLeft()] : null)
-                .Add(_spots.ContainsKey(position.BellowRight()) ? _spots[position.BellowRight()] : null);
+                .Add(_spots.ContainsKey(position.Above()) ? _spots[position.Above()].Some() : Option.None<Cell>())
+                .Add(_spots.ContainsKey(position.Bellow()) ? _spots[position.Bellow()].Some() : Option.None<Cell>())
+                .Add(_spots.ContainsKey(position.Left()) ? _spots[position.Left()].Some() : Option.None<Cell>())
+                .Add(_spots.ContainsKey(position.Right()) ? _spots[position.Right()].Some() : Option.None<Cell>())
+                .Add(_spots.ContainsKey(position.AboveLeft()) ? _spots[position.AboveLeft()].Some() : Option.None<Cell>())
+                .Add(_spots.ContainsKey(position.AboveRight()) ? _spots[position.AboveRight()].Some() : Option.None<Cell>())
+                .Add(_spots.ContainsKey(position.BellowLeft()) ? _spots[position.BellowLeft()].Some() : Option.None<Cell>())
+                .Add(_spots.ContainsKey(position.BellowRight()) ? _spots[position.BellowRight()].Some() : Option.None<Cell>());
         }
 
         public override bool Equals(object obj)

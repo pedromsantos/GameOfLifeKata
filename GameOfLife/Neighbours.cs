@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Optional;
 
 namespace GameOfLife
 {
@@ -17,15 +18,9 @@ namespace GameOfLife
             return _cells.Count(c => c is LiveCell);
         }
 
-        public Neighbours Add(Cell cell)
+        public Neighbours Add(Option<Cell> cell)
         {
-            if (cell == null)
-            {
-                return this;
-            }
-            
-            _cells.Add(cell);
-            
+            cell.Match(c => _cells.Add(c), () => { });
             return this;
         }
     }
