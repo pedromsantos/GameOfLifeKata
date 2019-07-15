@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Optional;
+using Optional.Collections;
 
 namespace GameOfLife
 {
@@ -28,14 +28,14 @@ namespace GameOfLife
         private Neighbours NeighboursTo(Position position)
         {
             return new Neighbours()
-                .Add(_spots.ContainsKey(position.Above()) ? _spots[position.Above()].Some() : Option.None<Cell>())
-                .Add(_spots.ContainsKey(position.Bellow()) ? _spots[position.Bellow()].Some() : Option.None<Cell>())
-                .Add(_spots.ContainsKey(position.Left()) ? _spots[position.Left()].Some() : Option.None<Cell>())
-                .Add(_spots.ContainsKey(position.Right()) ? _spots[position.Right()].Some() : Option.None<Cell>())
-                .Add(_spots.ContainsKey(position.AboveLeft()) ? _spots[position.AboveLeft()].Some() : Option.None<Cell>())
-                .Add(_spots.ContainsKey(position.AboveRight()) ? _spots[position.AboveRight()].Some() : Option.None<Cell>())
-                .Add(_spots.ContainsKey(position.BellowLeft()) ? _spots[position.BellowLeft()].Some() : Option.None<Cell>())
-                .Add(_spots.ContainsKey(position.BellowRight()) ? _spots[position.BellowRight()].Some() : Option.None<Cell>());
+                .Add(_spots.GetValueOrNone(position.Above()))
+                .Add(_spots.GetValueOrNone(position.Bellow()))
+                .Add(_spots.GetValueOrNone(position.Left()))
+                .Add(_spots.GetValueOrNone(position.Right()))
+                .Add(_spots.GetValueOrNone(position.AboveLeft()))
+                .Add(_spots.GetValueOrNone(position.AboveRight()))
+                .Add(_spots.GetValueOrNone(position.BellowLeft()))
+                .Add(_spots.GetValueOrNone(position.BellowRight()));
         }
 
         public override bool Equals(object obj)
