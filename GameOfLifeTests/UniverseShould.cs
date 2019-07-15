@@ -16,12 +16,10 @@ namespace GameOfLifeTests
                 {new Position(0,1), new LiveCell()},
                 {new Position(1,0), new LiveCell()},
             };
-            
-            var universe = new Universe(seed);
 
-            var newUniverse = universe.Tick();
+            var newUniverse = new Universe(seed).Tick();
             
-            newUniverse.Should().Be(universe);
+            newUniverse.Should().Be(new Universe(seed));
         }
     }
 }

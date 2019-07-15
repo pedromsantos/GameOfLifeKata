@@ -14,14 +14,14 @@ namespace GameOfLife
 
         public Universe Tick()
         {
-            var cells = new Dictionary<Position, Cell>();
+            var spots = new Dictionary<Position, Cell>();
 
             foreach (var (position, cell) in _spots)
             {
-                cells[position] = cell.Tick(NeighboursTo(position));
+                spots[position] = cell.Tick(NeighboursTo(position));
             }
             
-            return new Universe(cells);
+            return new Universe(spots);
         }
 
         private Neighbours NeighboursTo(Position position)
