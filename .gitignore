@@ -387,3 +387,6 @@ MigrationBackup/
 .vscode/tasks.json
 .vscode/launch.json
 .ionide/symbolCache.db
+
+.vscode
+.ionide
